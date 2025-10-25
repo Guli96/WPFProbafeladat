@@ -11,12 +11,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPFProbafeladat.Views;
 
 namespace WPFProbafeladat
 {
     public interface ILoginHandler
     {
+        public bool RegistrationAllowed { get; }
         bool ValidateUser(string username, string password);
+        bool RegisterUser(string username, string password);
     }
 
     /// <summary>
@@ -27,11 +30,13 @@ namespace WPFProbafeladat
         internal event EventHandler LoginSuccesful;
 
         private readonly ILoginHandler loginHandler;
+        public bool RegistrationAllowed => loginHandler.RegistrationAllowed;
 
         public LoginWindow(ILoginHandler loginHandler)
         {
             InitializeComponent();
             this.loginHandler = loginHandler;
+            this.DataContext = this;
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -47,8 +52,14 @@ namespace WPFProbafeladat
             }
             else
             {
-                MessageBox.Show("Failed!");
+                MessageBox.Show("Sikertelen bejelentkezés!");
             }
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            var registrationWindow = new RegistrationWindow(loginHandler);
+            registrationWindow.ShowDialog();
         }
     }
 }

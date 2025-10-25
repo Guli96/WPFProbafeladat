@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFProbafeladat"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Termékek" Height="450" Width="800">
     <StackPanel>
         <DataGrid x:Name="ProductsDataGrid" AutoGenerateColumns="False" Margin="10" IsReadOnly="True">
             <DataGrid.Columns>
@@ -26,6 +26,6 @@
                 
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="NewProductButton" Click="NewProduct">Új termék</Button>
+        <Button x:Name="NewProductButton" Width="250" Click="NewProduct">Új termék</Button>
     </StackPanel>
 </Window>
