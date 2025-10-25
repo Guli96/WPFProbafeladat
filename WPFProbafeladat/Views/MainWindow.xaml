@@ -1,0 +1,31 @@
+﻿<Window x:Class="WPFProbafeladat.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFProbafeladat"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <DataGrid x:Name="ProductsDataGrid" AutoGenerateColumns="False" Margin="10" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Cikkszám" Binding="{Binding Code}" />
+                <DataGridTextColumn Header="Név" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Leírás" Binding="{Binding Description}" />
+                <DataGridTextColumn Header="Ár" Binding="{Binding Price, ConverterCulture='hu-HU', StringFormat={}{0:C}}" />
+                <DataGridTemplateColumn Header="Műveletek" CanUserSort="False" CanUserResize="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button x:Name="EditProductButton" Click="EditProduct" Margin="5,0" Padding="5,5">Szerkesztés</Button>
+                                <Button x:Name="DeleteProductButton" Click="DeleteProduct" Margin="5,0" Padding="5,5">Törlés</Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="NewProductButton" Click="NewProduct">Új termék</Button>
+    </StackPanel>
+</Window>
